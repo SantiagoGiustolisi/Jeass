@@ -101,13 +101,29 @@ header.nav{
 @keyframes ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.ticker-track{animation:none}}
 
-/* ---------- SECTION HEAD ---------- */
+/* ---------- SECTION HEAD — rediseñado ---------- */
 .sec{padding:74px 0}
-.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:38px;flex-wrap:wrap}
-.sec-head h2{font-family:"Anton";font-size:clamp(34px,6vw,58px);letter-spacing:.02em;line-height:.95}
-.sec-head .label{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-.sec-head .note{color:var(--muted);font-size:14px;max-width:300px;text-align:right}
-@media(max-width:620px){.sec-head .note{text-align:left}}
+
+.sec-head{
+  margin-bottom:48px;
+  padding-bottom:36px;
+  border-bottom:1px solid var(--line);
+}
+.sec-head .label{
+  font-size:11px;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:14px;
+  font-weight:500;
+}
+.sec-head h2{
+  font-family:"Anton";
+  font-size:clamp(52px,7vw,88px);
+  letter-spacing:.01em;
+  line-height:.92;
+  color:var(--text);
+}
 
 /* ---------- DROPS ---------- */
 .drops{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
@@ -181,10 +197,10 @@ header.nav{
 /* ===== Vista de categorías ===== */
 .cats-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);   /* siempre 3 columnas iguales */
-  gap: 28px;                                /* separación generosa */
-  max-width: 900px;                         /* centrado en pantallas anchas */
-  margin: 0 auto;                           /* centrado horizontal */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 @media(max-width:700px){
   .cats-grid{grid-template-columns:1fr;gap:16px;max-width:100%}
@@ -193,7 +209,6 @@ header.nav{
   .cats-grid{grid-template-columns:repeat(2,1fr);gap:20px;max-width:100%}
 }
 
-/* Cat-card icono (fallback sin foto) */
 .cat-card{
   border:1px solid var(--line);border-radius:18px;padding:36px 20px;
   background:linear-gradient(160deg,var(--panel-2),var(--panel));
@@ -207,7 +222,6 @@ header.nav{
 .cat-card .cat-name{font-family:"Anton";font-size:20px;letter-spacing:.04em;color:var(--text)}
 .cat-card .cat-count{font-size:12px;color:var(--muted);margin-top:6px}
 
-/* Cat-card CON foto */
 .cat-card--photo {
   position: relative;
   padding: 0;
@@ -254,7 +268,6 @@ header.nav{
   opacity:0;transition:opacity .28s;z-index:1;pointer-events:none;
 }
 .cat-card--photo:hover::before{opacity:1}
-
 .cat-card-photo-content {
   position: relative;
   z-index: 2;
