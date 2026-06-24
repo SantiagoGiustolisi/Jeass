@@ -1,0 +1,347 @@
+:root{
+  --void:#050510;
+  --panel:#0b0c1a;
+  --panel-2:#12132b;
+  --line:rgba(123,108,255,.16);
+  --line-bright:rgba(123,108,255,.42);
+  --text:#ecedff;
+  --muted:#8688b3;
+  --accent:#7b6cff;
+  --accent-2:#4ad6ff;
+  --hot:#ff3d77;
+  --glow:0 0 0 1px rgba(123,108,255,.25), 0 18px 50px -18px rgba(123,108,255,.55);
+  --maxw:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--void);
+  color:var(--text);
+  font-family:"Space Grotesk",system-ui,sans-serif;
+  line-height:1.5;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;position:relative;z-index:1}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ---------- NAV ---------- */
+header.nav{
+  position:sticky;top:0;z-index:40;
+  backdrop-filter:blur(14px);
+  background:linear-gradient(180deg,rgba(5,5,16,.92),rgba(5,5,16,.66));
+  border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center}
+.nav-logo{height:42px;width:auto;object-fit:contain;mix-blend-mode:screen}
+.nav-links{display:flex;gap:30px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.nav-links a{transition:color .2s;cursor:pointer}
+.nav-links a:hover{color:var(--text)}
+.wa-btn{
+  display:flex;align-items:center;gap:9px;cursor:pointer;
+  background:#25D366;border:none;color:#04210f;
+  padding:9px 18px;border-radius:40px;font-family:inherit;font-size:13px;font-weight:700;
+  letter-spacing:.04em;transition:box-shadow .2s,transform .12s;
+  box-shadow:0 8px 26px -8px rgba(37,211,102,.55);
+}
+.wa-btn:hover{box-shadow:0 12px 34px -6px rgba(37,211,102,.75)}
+.wa-btn:active{transform:scale(.96)}
+@media(max-width:760px){.nav-links{display:none}.brand{font-size:21px;letter-spacing:.34em;padding-left:.34em}}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;
+  min-height:78vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  text-align:center;
+  background-image:
+    linear-gradient(to bottom,
+      rgba(5,5,16,.1) 0%,
+      rgba(5,5,16,.3) 50%,
+      rgba(5,5,16,.85) 80%,
+      rgba(5,5,16,1) 100%),
+    url('../img/LOGO.png');
+  background-size:cover;
+  background-position:center center;
+  padding:0;
+}
+.hero .wrap{padding-bottom:0}
+.hero .eyebrow{font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--accent-2);margin-bottom:26px;margin-top:40px}
+.hero p.sub{margin:26px auto 0;max-width:440px;color:var(--text);font-size:15px;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.hero-cta{margin-top:36px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{font-family:inherit;font-weight:600;cursor:pointer;border:none;letter-spacing:.04em;
+  padding:15px 30px;border-radius:46px;font-size:14px;transition:transform .12s,box-shadow .2s,background .2s}
+.btn:active{transform:scale(.96)}
+.btn-primary{background:linear-gradient(96deg,var(--accent),#9b6cff);color:#fff;box-shadow:var(--glow)}
+.btn-primary:hover{box-shadow:0 0 0 1px rgba(123,108,255,.45),0 22px 60px -14px rgba(123,108,255,.7)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line-bright)}
+.btn-ghost:hover{background:var(--panel-2)}
+
+/* ---------- TICKER ---------- */
+.ticker{
+  margin-top:64px;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+  padding:14px 0;
+  position:relative;
+}
+.ticker-track{
+  display:flex;width:max-content;white-space:nowrap;
+  animation:ticker-scroll 32s linear infinite;
+  font-family:"Anton";font-size:15px;letter-spacing:.22em;color:var(--muted);will-change:transform;
+}
+.ticker-track span{display:inline-flex;align-items:center;gap:48px;padding-right:48px;flex-shrink:0}
+.ticker-track b{color:var(--accent-2);font-weight:400}
+@keyframes ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.ticker-track{animation:none}}
+
+/* ---------- SECTION HEAD ---------- */
+.sec{padding:74px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:38px;flex-wrap:wrap}
+.sec-head h2{font-family:"Anton";font-size:clamp(34px,6vw,58px);letter-spacing:.02em;line-height:.95}
+.sec-head .label{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.sec-head .note{color:var(--muted);font-size:14px;max-width:300px;text-align:right}
+@media(max-width:620px){.sec-head .note{text-align:left}}
+
+/* ---------- DROPS ---------- */
+.drops{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.drop{position:relative;border:1px solid var(--line);border-radius:20px;padding:26px;overflow:hidden;
+  background:linear-gradient(160deg,var(--panel-2),var(--panel));min-height:240px;display:flex;flex-direction:column;justify-content:space-between}
+.drop::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(60% 60% at 80% 0,rgba(123,108,255,.22),transparent 70%);pointer-events:none}
+.drop-badge{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;font-size:11px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;padding:6px 13px;border-radius:30px;position:relative;z-index:1}
+.drop-badge.soon{background:rgba(123,108,255,.16);color:#bcb6ff;border:1px solid var(--line-bright)}
+.drop-badge.live{background:rgba(255,61,119,.16);color:#ff7da4;border:1px solid rgba(255,61,119,.45)}
+.drop-badge .dot{width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.drop h3{font-family:"Anton";font-size:30px;letter-spacing:.02em;margin:18px 0 6px;position:relative;z-index:1}
+.drop .drop-sub{color:var(--muted);font-size:14px;position:relative;z-index:1;margin-bottom:18px}
+.countdown{display:flex;gap:10px;position:relative;z-index:1;margin-bottom:20px}
+.cd-box{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:9px 0;flex:1;text-align:center}
+.cd-box .num{font-family:"Anton";font-size:24px;line-height:1}
+.cd-box .unit{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.drop .notify{position:relative;z-index:1;width:100%;justify-content:center;display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.05);border:1px solid var(--line-bright);color:var(--text);
+  padding:13px;border-radius:40px;font-family:inherit;font-weight:600;font-size:13px;cursor:pointer;transition:background .2s}
+.drop .notify:hover{background:rgba(123,108,255,.18)}
+
+/* ---------- CATÁLOGO ---------- */
+.catalog-nav{display:flex;align-items:center;gap:10px;margin-bottom:38px;flex-wrap:wrap}
+.catalog-nav .back-pill{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--panel-2);border:1px solid var(--line-bright);
+  color:var(--text);padding:8px 18px;border-radius:40px;
+  font-size:13px;font-weight:600;cursor:pointer;transition:background .2s;
+}
+.catalog-nav .back-pill:hover{background:rgba(123,108,255,.18)}
+.catalog-nav .crumb{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:7px}
+.catalog-nav .crumb .sep{opacity:.35}
+.catalog-nav .crumb .cur{color:var(--text);font-weight:600}
+
+/* Vista de marcas */
+.brands-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px}
+.brand-card{
+  position:relative;border:1px solid var(--line);border-radius:20px;padding:28px 24px 30px;
+  overflow:hidden;cursor:pointer;text-align:center;
+  background:linear-gradient(160deg,var(--panel-2),var(--panel));
+  transition:transform .3s cubic-bezier(.22,.8,.22,1),border-color .3s,box-shadow .3s;
+}
+.brand-card::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% -10%,var(--bc-glow) 0%,transparent 65%);
+  opacity:0;transition:opacity .3s}
+.brand-card:hover{transform:translateY(-10px);border-color:var(--bc-border);box-shadow:0 24px 60px var(--bc-shadow)}
+.brand-card:hover::after{opacity:1}
+.brand-card.supreme{--bc-glow:rgba(220,30,30,.22);--bc-border:rgba(220,30,30,.5);--bc-shadow:rgba(220,30,30,.18)}
+.brand-card.nike{--bc-glow:rgba(255,255,255,.12);--bc-border:rgba(255,255,255,.35);--bc-shadow:rgba(255,255,255,.08)}
+.brand-card.adidas{--bc-glow:rgba(74,214,255,.15);--bc-border:rgba(74,214,255,.4);--bc-shadow:rgba(74,214,255,.15)}
+.brand-card.essentials{--bc-glow:rgba(255,200,80,.15);--bc-border:rgba(255,200,80,.4);--bc-shadow:rgba(255,200,80,.12)}
+.brand-logo-wrap{
+  height:150px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;position:relative;z-index:1;
+  border-radius:14px;overflow:hidden;background:#ffffff;
+  border:1px solid rgba(255,255,255,.14);padding:18px;
+}
+.brand-logo-wrap img{width:100%;height:100%;object-fit:contain;border-radius:4px}
+.brand-logo-wrap .foto-placeholder{display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:#6b6f86;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.brand-logo-wrap .foto-placeholder span{font-size:30px}
+.brand-card-name{font-size:17px;font-weight:700;color:var(--text);letter-spacing:.05em;position:relative;z-index:1}
+.brand-card-sub{font-size:12px;color:var(--muted);margin-top:5px;position:relative;z-index:1}
+.brand-card-count{display:inline-block;margin-top:14px;font-size:11px;font-weight:700;padding:4px 12px;
+  border-radius:20px;background:rgba(255,255,255,.07);color:var(--muted);
+  border:1px solid rgba(255,255,255,.1);position:relative;z-index:1}
+
+/* ===== Vista de categorías ===== */
+.cats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);   /* siempre 3 columnas iguales */
+  gap: 28px;                                /* separación generosa */
+  max-width: 900px;                         /* centrado en pantallas anchas */
+  margin: 0 auto;                           /* centrado horizontal */
+}
+@media(max-width:700px){
+  .cats-grid{grid-template-columns:1fr;gap:16px;max-width:100%}
+}
+@media(min-width:701px) and (max-width:900px){
+  .cats-grid{grid-template-columns:repeat(2,1fr);gap:20px;max-width:100%}
+}
+
+/* Cat-card icono (fallback sin foto) */
+.cat-card{
+  border:1px solid var(--line);border-radius:18px;padding:36px 20px;
+  background:linear-gradient(160deg,var(--panel-2),var(--panel));
+  cursor:pointer;text-align:center;
+  transition:transform .25s,border-color .25s,box-shadow .25s;
+}
+.cat-card:hover{transform:translateY(-6px);border-color:var(--line-bright);box-shadow:0 14px 40px rgba(123,108,255,.2)}
+.cat-card:hover .cat-icon{color:var(--accent)}
+.cat-card .cat-icon{display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:var(--accent-2);transition:color .25s}
+.cat-card .cat-icon svg{width:52px;height:52px;display:block}
+.cat-card .cat-name{font-family:"Anton";font-size:20px;letter-spacing:.04em;color:var(--text)}
+.cat-card .cat-count{font-size:12px;color:var(--muted);margin-top:6px}
+
+/* Cat-card CON foto */
+.cat-card--photo {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  min-height: 240px;
+  background: var(--cover, none) center center / cover no-repeat, var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  cursor: pointer;
+  transition: transform .28s cubic-bezier(.22,.8,.22,1), border-color .25s, box-shadow .28s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.cat-card--photo:hover {
+  transform: translateY(-7px) scale(1.015);
+  border-color: var(--line-bright);
+  box-shadow: 0 22px 56px rgba(0,0,0,.5);
+}
+.cat-card-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(5,5,16,0)   0%,
+    rgba(5,5,16,.15) 38%,
+    rgba(5,5,16,.75) 72%,
+    rgba(5,5,16,.94) 100%
+  );
+  transition: background .28s;
+}
+.cat-card--photo:hover .cat-card-photo-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(5,5,16,0)   0%,
+    rgba(5,5,16,.08) 32%,
+    rgba(5,5,16,.60) 68%,
+    rgba(5,5,16,.88) 100%
+  );
+}
+.cat-card--photo::before {
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(160deg,rgba(123,108,255,.18),transparent 50%);
+  opacity:0;transition:opacity .28s;z-index:1;pointer-events:none;
+}
+.cat-card--photo:hover::before{opacity:1}
+
+.cat-card-photo-content {
+  position: relative;
+  z-index: 2;
+  padding: 20px 20px 24px;
+}
+.cat-card-photo-name {
+  font-family: "Anton", sans-serif;
+  font-size: 26px;
+  letter-spacing: .04em;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 6px;
+  text-shadow: 0 2px 14px rgba(0,0,0,.7);
+}
+.cat-card-photo-count {
+  font-size: 13px;
+  color: rgba(255,255,255,.6);
+  font-weight: 600;
+  letter-spacing: .06em;
+}
+
+/* Vista de productos */
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:18px}
+.prod-card{border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  background:var(--panel);transition:transform .25s,border-color .25s;display:flex;flex-direction:column}
+.prod-card:hover{transform:translateY(-5px);border-color:var(--line-bright)}
+.prod-img{position:relative;aspect-ratio:1/1;display:grid;place-items:center;overflow:hidden;
+  font-family:"Anton";font-size:30px;text-align:center;letter-spacing:.04em;
+  color:rgba(255,255,255,.92);padding:0 18px;line-height:1;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.prod-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.prod-img .art-label{position:relative;z-index:1}
+.prod-img .art-label small{display:block;font-family:"Space Grotesk";font-size:11px;letter-spacing:.28em;color:var(--accent-2);margin-top:12px;font-weight:600}
+.prod-body{padding:18px;display:flex;flex-direction:column;gap:12px;flex:1}
+.prod-body .prod-cat{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.prod-body h3{font-family:"Anton";font-size:21px;letter-spacing:.02em;line-height:1.05}
+.prod-price{font-size:19px;font-weight:700}
+.prod-price .old{color:var(--muted);text-decoration:line-through;font-weight:400;font-size:14px;margin-left:8px}
+.prod-sizes{display:flex;gap:7px;flex-wrap:wrap}
+.sz{min-width:36px;height:34px;padding:0 8px;border-radius:9px;border:1px solid var(--line);background:transparent;
+  color:var(--text);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
+.sz:hover{border-color:var(--line-bright)}
+.sz.sel{background:var(--accent);border-color:var(--accent);color:#fff}
+.prod-ask{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+  background:#25D366;border:none;color:#04210f;padding:13px;border-radius:40px;
+  font-family:inherit;font-weight:700;font-size:13px;cursor:pointer;transition:box-shadow .2s,transform .12s;
+  box-shadow:0 10px 28px -10px rgba(37,211,102,.55)}
+.prod-ask:hover{box-shadow:0 14px 36px -8px rgba(37,211,102,.75)}
+.prod-ask:active{transform:scale(.97)}
+.stock-badge{font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:2px}
+.in-stock{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.25)}
+.out-stock{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.25)}
+
+/* catalog view switcher */
+#view-brands,#view-cats,#view-prods{display:none}
+#view-brands.active,#view-cats.active,#view-prods.active{display:block}
+
+/* ---------- INFO STRIP ---------- */
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:10px}
+.strip .cell{background:var(--panel);padding:26px 24px}
+.strip .cell .ico{font-size:22px;margin-bottom:10px}
+.strip .cell h4{font-size:14px;letter-spacing:.04em;margin-bottom:5px}
+.strip .cell p{color:var(--muted);font-size:13px}
+
+/* ---------- FOOTER ---------- */
+footer{border-top:1px solid var(--line);margin-top:40px;padding:54px 0 40px;position:relative;z-index:1}
+.foot-grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
+.foot-brand .b{font-family:"Anton";font-size:34px;letter-spacing:.34em;padding-left:.34em;margin-bottom:10px}
+.foot-brand p{color:var(--muted);font-size:13px;max-width:280px}
+.foot-links{display:flex;gap:50px;flex-wrap:wrap}
+.foot-col h5{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.foot-col a,.foot-col span{display:block;color:var(--muted);font-size:14px;margin-bottom:9px;transition:color .2s;cursor:pointer}
+.foot-col a:hover{color:var(--text)}
+.copy{margin-top:46px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+/* ---------- TOAST ---------- */
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(120px);z-index:80;
+  background:var(--panel-2);border:1px solid var(--line-bright);color:var(--text);padding:14px 22px;border-radius:46px;
+  font-size:14px;font-weight:600;box-shadow:var(--glow);transition:transform .35s cubic-bezier(.2,1.3,.4,1);
+  display:flex;align-items:center;gap:10px;white-space:nowrap}
+.toast.on{transform:translateX(-50%) translateY(0)}
+.toast .tk{color:var(--accent-2)}
+
+/* floating whatsapp */
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:45;width:58px;height:58px;border-radius:50%;
+  background:#25D366;display:grid;place-items:center;box-shadow:0 14px 34px -8px rgba(37,211,102,.7);transition:transform .15s}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:30px;height:30px}
+@media(max-width:760px){.wa-float{bottom:18px;right:18px}}

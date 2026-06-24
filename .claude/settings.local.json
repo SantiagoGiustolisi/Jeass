@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"c:/Users/Alejo/Desktop/Jeass/css\" \"c:/Users/Alejo/Desktop/Jeass/js\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\Alejo\\Desktop\\Jeass"
+    ]
+  }
+}
