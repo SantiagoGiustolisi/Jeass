@@ -6,9 +6,9 @@
 // ============================================================
 
 define('DB_HOST',    'localhost');
-define('DB_NAME',    'u000000_jeass');   // <-- cambiar
-define('DB_USER',    'u000000_jeass');   // <-- cambiar
-define('DB_PASS',    'tu_password');     // <-- cambiar
+define('DB_NAME',    'u406387760_jeass_db');
+define('DB_USER',    'u406387760_jeass_db');
+define('DB_PASS',    'JeassMiramar123');
 define('DB_CHARSET', 'utf8mb4');
 
 function getDB(): PDO {

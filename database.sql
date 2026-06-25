@@ -3,12 +3,6 @@
 --  Ejecutar en phpMyAdmin o cliente MySQL de Hostinger
 -- ============================================================
 
-CREATE DATABASE IF NOT EXISTS jeass_db
-  CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;
-
-USE jeass_db;
-
 -- ------------------------------------------------------------
 --  MARCAS
 -- ------------------------------------------------------------
