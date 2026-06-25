@@ -32,7 +32,7 @@ function sizesInStock(p){
 }
 
 /* ===== DATA ===== */
-const CATALOG = JSON.parse(localStorage.getItem("jeass_catalog") || "null") || {
+const DEFAULT_CATALOG = {
   supreme:{name:"Supreme",cls:"supreme",img:"",sub:"New York · Box Logo",categories:[
     {name:"Buzo",icon:"🧥",coverImg:"",products:[]},
     {name:"Pantalón",icon:"👖",coverImg:"",products:[]},
@@ -50,6 +50,14 @@ const CATALOG = JSON.parse(localStorage.getItem("jeass_catalog") || "null") || {
     {name:"Pantalón",icon:"👖",coverImg:"",products:[]},
     {name:"Remera",icon:"👕",coverImg:"",products:[]}]},
 };
+const DEFAULT_DROPS = [
+  {name:"Winter Capsule", sub:"Buzos + remeras edición invierno", date:"2026-07-10T20:00:00", status:"soon"},
+  {name:"Restock Essentials", sub:"Vuelven los talles agotados", date:"2026-07-02T20:00:00", status:"live"},
+  {name:"Cosmos Series 02", sub:"La nueva tanda con el mascot JSS", date:"2026-08-01T20:00:00", status:"soon"},
+];
+
+let CATALOG = {};
+let DROPS   = [];
 
 /* ===== ESTADO ===== */
 let currentBrand = null;
@@ -191,11 +199,6 @@ function encargo(){
 }
 
 /* ===== DROPS ===== */
-const DROPS = JSON.parse(localStorage.getItem("jeass_drops") || "null") || [
-  {name:"Winter Capsule", sub:"Buzos + remeras edición invierno", date:"2026-07-10T20:00:00", status:"soon"},
-  {name:"Restock Essentials", sub:"Vuelven los talles agotados", date:"2026-07-02T20:00:00", status:"live"},
-  {name:"Cosmos Series 02", sub:"La nueva tanda con el mascot JSS", date:"2026-08-01T20:00:00", status:"soon"},
-];
 function renderDrops(){
   document.getElementById("dropsGrid").innerHTML = DROPS.map((d,i)=>{
     const badge = d.status==="live"
@@ -255,9 +258,24 @@ function notifyDrop(name){
 })();
 
 /* ===== INIT ===== */
-renderBrands();
-renderDrops();
-setInterval(tick,1000);
-window.addEventListener("storage",e=>{
-  if(e.key==="jeass_catalog"||e.key==="jeass_drops") location.reload();
-});
+async function initApp(){
+  try {
+    const [catalogRes, dropsRes] = await Promise.all([
+      fetch("api/catalog.php"),
+      fetch("api/drops.php"),
+    ]);
+    const catalogData = await catalogRes.json();
+    const dropsData   = await dropsRes.json();
+
+    CATALOG = Object.keys(catalogData).length > 0 ? catalogData : DEFAULT_CATALOG;
+    DROPS   = Array.isArray(dropsData) && dropsData.length > 0 ? dropsData : DEFAULT_DROPS;
+  } catch(e) {
+    CATALOG = DEFAULT_CATALOG;
+    DROPS   = DEFAULT_DROPS;
+  }
+  renderBrands();
+  renderDrops();
+  setInterval(tick, 1000);
+}
+
+initApp();
